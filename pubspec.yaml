@@ -68,7 +68,7 @@ flutter:
           weight: 700
     - family: Anton
       fonts:
-        - asset: assets/fonts/TrajanPro.ttf
+        - asset: assets/fonts/Anton-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
