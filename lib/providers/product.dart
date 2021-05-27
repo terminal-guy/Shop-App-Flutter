@@ -22,3 +22,7 @@ class Product with ChangeNotifier {
     notifyListeners();
   }
 }
+
+// * NOTES
+// Using ChangeNotifier cuz i want the class to update  with notifylisteners for toggling favorites.
+// isFavorite = !isFavorite change value to the opposite of it.
