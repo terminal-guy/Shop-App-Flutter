@@ -31,3 +31,6 @@ class ProductsGrid extends StatelessWidget {
     );
   }
 }
+
+// * NOTES
+// adding changenotifierprovider to get the product items and did comment out the code for named parameter cuz managing it from product_item.dart file
