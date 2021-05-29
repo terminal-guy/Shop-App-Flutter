@@ -64,6 +64,11 @@ class CartScreen extends StatelessWidget {
               itemCount: cart.items.length,
             ),
           ),
+          // * NOTES
+          // the cart class refers to the items map
+          // We are interested in the values that are store in the map
+          // We can actually access the values interable property which we can convet into a list
+          // we are extracting values to list so i operate on list of values, so we can worked in the concreate valuest stored in the map
         ],
       ),
     );
