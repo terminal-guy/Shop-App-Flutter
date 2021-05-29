@@ -16,12 +16,19 @@ class CartItem {
 
 class Cart with ChangeNotifier {
   Map<String, CartItem> _items;
+  // * NOTES
+  // Returning in Map cuz we will check with the productId with the cartitem id.
 
   Map<String, CartItem> get items {
     return {..._items};
-  }
+  } // getter for _items.
 
   void addItem(String productId, double price, String title) {
+    // * NOTES
+    // checking key that if it has the key.
+    // For replacing the quantity.
+    // adding have the existingcartitem
+    // But adding existingCartItemQuantity with plus one.
     if (_items.containsKey(productId)) {
       _items.update(
         productId,
@@ -33,6 +40,9 @@ class Cart with ChangeNotifier {
         ),
       );
     } else {
+      // *NOTES
+      // if the if check failed checking if put if absent with productid
+      // the default quantity as 1
       _items.putIfAbsent(
         productId,
         () => CartItem(
