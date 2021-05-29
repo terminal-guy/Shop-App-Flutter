@@ -52,6 +52,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             // The third argument is child, which is there for optimization.
             // If you have a large widget subtree under your Consumer that doesn’t change when the model changes,
             // you can construct it once and get it through the builder.
+            // This IconButton will not rebuild cuz it is out of widget tree.
             child: IconButton(
               icon: Icon(Icons.shopping_cart),
               onPressed: () {},
