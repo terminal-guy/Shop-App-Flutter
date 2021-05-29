@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/cart.dart';
 import 'package:shop_app/providers/products.dart';
+import 'package:shop_app/screens/cart_screen.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
 
@@ -55,7 +56,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             // This IconButton will not rebuild cuz it is out of widget tree.
             child: IconButton(
               icon: Icon(Icons.shopping_cart),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.screenName);
+              },
             ),
           ),
         ],
