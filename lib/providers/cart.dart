@@ -27,6 +27,9 @@ class Cart with ChangeNotifier {
     return _items.length;
   }
 
+  // Getting the totalamount by cartItem price multiplied with cartitem quantity.
+  // And we are looping with for each element in the map
+
   double get totalAmount {
     double total = 0.0;
     _items.forEach((key, cartItem) {
