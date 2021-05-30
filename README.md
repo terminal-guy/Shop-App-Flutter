@@ -1,5 +1,13 @@
 # Shop App
 
+
+Pro Info: Instructor
+
+Status: Finished
+
+Url: https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/learn/lecture/15100230#content
+
+
 - ***Module introduction***
 
     In this module we are going to learn about more UI widgets & patterns and managing state using provider.
