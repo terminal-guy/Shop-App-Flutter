@@ -52,6 +52,7 @@ class CartScreen extends StatelessWidget {
                       // We are added addOrder method.
                       // we are using cart.items.values.toList() cuz we are using maps.
                       // We are not listening cuz we don't want to listen to changes we are only interest in dispatch of the order.
+                      // We are calling cart.clear to clear the current cart items after we click the order now button
                     },
                   )
                 ],
