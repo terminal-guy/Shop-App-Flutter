@@ -14,6 +14,8 @@ class ProductDetailScreen extends StatelessWidget {
     final productId = ModalRoute.of(context).settings.arguments as String;
     final loadedProduct =
         Provider.of<Products>(context, listen: false).findById(productId);
+    // geting loaded product by provider from findbyid method that is checking the prodId == productId.
+
     return Scaffold(
       appBar: AppBar(
         title: Text(loadedProduct.title),
@@ -27,6 +29,7 @@ class ProductDetailScreen extends StatelessWidget {
             Container(
               margin: const EdgeInsets.all(15),
               child: ClipRRect(
+                // ClipRRect is pretty useful widget while it comes to have a border radius or make something to clip
                 borderRadius: BorderRadius.circular(20),
                 child: Card(
                   elevation: 20,
