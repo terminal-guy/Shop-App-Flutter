@@ -49,6 +49,9 @@ class CartScreen extends StatelessWidget {
                       Provider.of<Orders>(context, listen: false).addOrder(
                           cart.items.values.toList(), cart.totalAmount);
                       cart.clear();
+                      // We are added addOrder method.
+                      // we are using cart.items.values.toList() cuz we are using maps.
+                      // We are not listening cuz we don't want to listen to changes we are only interest in dispatch of the order.
                     },
                   )
                 ],
