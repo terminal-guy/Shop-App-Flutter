@@ -42,3 +42,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// State management section is finished.
+// No we are getting into user-forms and user-inputs
