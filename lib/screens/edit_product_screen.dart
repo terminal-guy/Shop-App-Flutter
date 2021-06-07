@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../providers/product.dart';
 
 class EditProductScreen extends StatefulWidget {
   static const screenName = '/edit-product';
@@ -10,10 +11,16 @@ class EditProductScreen extends StatefulWidget {
 class _EditProductScreenState extends State<EditProductScreen> {
   final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
+  // FocusNode is build into material.dart it use to focusnode. To create a node..
+
   final _imageUrlController = TextEditingController();
   final _imageUrlFocusNode = FocusNode();
+  final _form = GlobalKey<FormState>();
+// Added a globalkey formstate key for Form widget.
 
-  // FocusNode is build into material.dart it use to focusnode. To create a node..
+  var _editedProduct =
+      Product(id: null, title: '', price: 0, description: '', imageUrl: '');
+// We are getting the info for products from the price and extras by textfield by textfield.
 
   @override
   void initState() {
@@ -37,15 +44,31 @@ class _EditProductScreenState extends State<EditProductScreen> {
     super.dispose();
   }
 
+  void _saveForm() {
+    _form.currentState.save();
+    // To save all the currentState form info
+    print(_editedProduct.title);
+    print(_editedProduct.description);
+    print(_editedProduct.price);
+    print(_editedProduct.imageUrl);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Product'),
+        actions: [
+          IconButton(
+            onPressed: _saveForm,
+            icon: Icon(Icons.save),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
+          key: _form,
           child: ListView(
             children: [
               TextFormField(
@@ -56,6 +79,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   // focusscope is also like mediaquery and theme get the .of(context) parameter.
                   // in modern phones it automatically does it for use while getting from the normal keyboard with the number keyboard.
                 },
+                onSaved: (value) {
+                  // Adding value to _editedProduct onsaved by onsaved.
+                  _editedProduct = Product(
+                    id: null,
+                    title: value,
+                    description: _editedProduct.description,
+                    price: _editedProduct.price,
+                    imageUrl: _editedProduct.imageUrl,
+                  );
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Price'),
@@ -65,12 +98,32 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_descriptionFocusNode);
                 },
+                onSaved: (value) {
+                  // Adding value to _editedProduct onsaved by onsaved.
+                  _editedProduct = Product(
+                    id: null,
+                    title: _editedProduct.title,
+                    description: _editedProduct.description,
+                    price: double.parse(value),
+                    imageUrl: _editedProduct.imageUrl,
+                  );
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Description'),
                 focusNode: _descriptionFocusNode,
                 maxLines: 3,
                 keyboardType: TextInputType.multiline,
+                onSaved: (value) {
+                  _editedProduct = Product(
+                    // Adding value to _editedProduct onsaved by onsaved.
+                    id: null,
+                    title: _editedProduct.title,
+                    description: value,
+                    price: _editedProduct.price,
+                    imageUrl: _editedProduct.imageUrl,
+                  );
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -97,9 +150,23 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       textInputAction: TextInputAction.done,
                       controller: _imageUrlController,
                       focusNode: _imageUrlFocusNode,
+                      onFieldSubmitted: (_) {
+                        // We are triggering the onfieldSubmitted button after the textinputaction.done.
+                        _saveForm();
+                      },
                       onEditingComplete: () {
                         setState(() {});
                         // we force Flutter to update the screen.
+                      },
+                      onSaved: (value) {
+                        // Adding value to _editedProduct onsaved by onsaved.
+                        _editedProduct = Product(
+                          id: null,
+                          title: _editedProduct.title,
+                          description: _editedProduct.description,
+                          price: _editedProduct.price,
+                          imageUrl: value,
+                        );
                       },
                     ),
                   ),
