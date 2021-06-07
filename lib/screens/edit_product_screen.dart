@@ -8,6 +8,7 @@ class EditProductScreen extends StatefulWidget {
 
 class _EditProductScreenState extends State<EditProductScreen> {
   final _priceFocusNode = FocusNode();
+  // FocusNode is build into material.dart it use to focusnode. To create a node..
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +25,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceFocusNode);
+                  // focusscope is also like mediaquery and theme get the .of(context) parameter.
+                  // in modern phones it automatically does it for use while getting from the normal keyboard with the number keyboard.
                 },
               ),
               TextFormField(
