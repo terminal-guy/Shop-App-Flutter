@@ -45,6 +45,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void _saveForm() {
+    final isValid = _form.currentState.validate();
+    if (!isValid) {
+      return;
+    }
     _form.currentState.save();
     // To save all the currentState form info
     print(_editedProduct.title);
@@ -89,6 +93,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     imageUrl: _editedProduct.imageUrl,
                   );
                 },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please provide a Value.';
+                  }
+                  return null;
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Price'),
@@ -108,6 +118,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     imageUrl: _editedProduct.imageUrl,
                   );
                 },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please provide Price for the Product';
+                  }
+                  return null;
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Description'),
@@ -123,6 +139,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     price: _editedProduct.price,
                     imageUrl: _editedProduct.imageUrl,
                   );
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Provide a Description.';
+                  }
+                  return null;
                 },
               ),
               Row(
@@ -167,6 +189,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           price: _editedProduct.price,
                           imageUrl: value,
                         );
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please provide a Image URL.';
+                        }
+                        return null;
                       },
                     ),
                   ),
