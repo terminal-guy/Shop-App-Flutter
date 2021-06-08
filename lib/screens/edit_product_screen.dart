@@ -29,9 +29,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void _updateImageUrl() {
+    // We are not updating image container if it doesn't fit this checks.
     if (!_imageUrlFocusNode.hasFocus) {
-      // We are not updating image container if it doesn't fit this checks.
-
       if (!_imageUrlController.text.startsWith('http') &&
               (!_imageUrlController.text.startsWith('https')) ||
           (!_imageUrlController.text.endsWith('.png') &&
@@ -134,7 +133,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   }
                   if (double.tryParse(value) == null) {
                     return 'Please enter a valid number.';
-                  }
+                  } // we are trying to parse it doesn't give error it's like a check.
                   if (double.parse(value) <= 0) {
                     return 'Please enter a number greater than zero';
                   }
@@ -210,6 +209,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         );
                       },
                       validator: (value) {
+                        // Validating checks for url
                         if (value.isEmpty) {
                           return 'Please Enter a Image URL.';
                         }
