@@ -66,13 +66,13 @@ class Products with ChangeNotifier {
     notifyListeners();
   }
 
-  void addProduct(Product product) {
+  Future<void> addProduct(Product product) {
     final url = Uri.https(
         'shop-app-5d010-default-rtdb.firebaseio.com', '/products.json');
     // You don't have to use http or the slash while using https enum.
     // You can use it while using parse
 
-    http
+    return http
         .post(url,
             body: json.encode(
               {
