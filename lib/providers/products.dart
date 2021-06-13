@@ -72,27 +72,34 @@ class Products with ChangeNotifier {
     // You don't have to use http or the slash while using https enum.
     // You can use it while using parse
 
-    http.post(url,
-        body: json.encode(
-          {
-            'title': product.title,
-            'description': product.description,
-            'imageUrl': product.imageUrl,
-            'price': product.price,
-            'isFavorite': product.isFavorite,
-          },
-        ));
-    // we are sending data through json using encode method
-    final newProduct = Product(
-      title: product.title,
-      description: product.description,
-      id: DateTime.now().toString(),
-      imageUrl: product.imageUrl,
-      price: product.price,
-    );
+    http
+        .post(url,
+            body: json.encode(
+              {
+                'title': product.title,
+                'description': product.description,
+                'imageUrl': product.imageUrl,
+                'price': product.price,
+                'isFavorite': product.isFavorite,
+              },
+            ))
+        .then(
+      (response) {
+        print(json.decode(response.body));
+        final newProduct = Product(
+          title: product.title,
+          description: product.description,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          id: json.decode(response.body)['name'],
+        );
 
-    _items.add(newProduct);
-    // _items.add(value)
-    notifyListeners();
+        _items.add(newProduct);
+        // _items.add(value)
+        notifyListeners();
+        // it will run after we have the response it will not run immediately.
+      },
+    );
+    // we are sending data through json using encode method
   }
 }
