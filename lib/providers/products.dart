@@ -91,7 +91,8 @@ class Products with ChangeNotifier {
           description: product.description,
           imageUrl: product.imageUrl,
           price: product.price,
-          id: json.decode(response.body)['name'],
+          id: json.decode(response.body)[
+              'name'], // we are getting a unique id from firebase with  the response decoded.
         );
 
         _items.add(newProduct);
