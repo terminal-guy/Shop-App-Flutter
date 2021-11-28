@@ -103,7 +103,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
       Provider.of<Products>(context, listen: false)
           .updateProduct(_editedProduct.id, _editedProduct);
       setState(() {
-        _isLoading = true;
+        _isLoading = false;
       });
       Navigator.of(context).pop();
     } else {
@@ -111,7 +111,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
           .addProduct(_editedProduct)
           .then((_) {
         setState(() {
-          _isLoading = true;
+          _isLoading = false;
         });
         Navigator.of(context).pop();
       });
